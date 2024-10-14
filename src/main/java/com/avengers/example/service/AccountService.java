@@ -15,9 +15,9 @@ public class AccountService
     private final AccountRepository accountRepository;
 
     @Transactional
-    public void create(Account account)
+    public Account create(Account account)
     {
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
     public List<Account> findAll()
