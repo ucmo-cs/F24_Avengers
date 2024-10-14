@@ -16,7 +16,6 @@ public class AccountController
 {
     private final AccountService accountService;
 
-    // TODO: Resolve compilation issue here
     @PostMapping("/account")
     public ResponseEntity<?> save(@RequestBody Account account)
     {
