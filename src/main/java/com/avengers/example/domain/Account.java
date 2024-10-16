@@ -16,10 +16,23 @@ public class Account
     private String email;
     private String phoneNumber;
 
+    /**
+     * No argument constructor for account object.
+     */
     public Account()
     {
     }
 
+    /**
+     * All argument constructor for account object.
+     *
+     * @param acctId      (long) id of the account.
+     * @param userType    (int) type of the account.
+     * @param username    (String) username of the account.
+     * @param password    (String) password of the account.
+     * @param email       (String) email of the account.
+     * @param phoneNumber (String) phone number of the account.
+     */
     public Account(long acctId, int userType, String username, String password, String email, String phoneNumber)
     {
         this.acctId = acctId;
@@ -30,16 +43,29 @@ public class Account
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Sets the type of user account.
+     *
+     * @param userType (int) type of user account.
+     */
     public void setUserType(int userType)
     {
         this.userType = userType;
     }
 
+    /**
+     * @return (int) the type of user account
+     */
     public int getUserType()
     {
         return userType;
     }
 
+    /**
+     * Sets the username of the account.
+     *
+     * @param username (String) username of the account.
+     */
     public void setUsername(String username)
     {
         if (null == username || username == "" || username == " ")
@@ -49,11 +75,19 @@ public class Account
         this.username = username;
     }
 
+    /**
+     * @return (String) username of the account.
+     */
     public String getUsername()
     {
         return username;
     }
 
+    /**
+     * Sets the password of the account.
+     *
+     * @param password (String) account password.
+     */
     public void setPassword(String password)
     {
         if (null == password || password == "" || password == " ")
@@ -63,11 +97,19 @@ public class Account
         this.password = password;
     }
 
+    /**
+     * @return (String) account password.
+     */
     public String getPassword()
     {
         return password;
     }
 
+    /**
+     * Sets the email on the account.
+     *
+     * @param email (String) account email.
+     */
     public void setEmail(String email)
     {
         if (null == email || email == "" || email == " ")
@@ -77,11 +119,19 @@ public class Account
         this.email = email;
     }
 
+    /**
+     * @return (String) account email.
+     */
     public String getEmail()
     {
         return email;
     }
 
+    /**
+     * Sets the phone number of the account.
+     *
+     * @param phoneNumber (String) account phone number.
+     */
     public void setPhoneNumber(String phoneNumber)
     {
         if (null == phoneNumber || phoneNumber == "" || phoneNumber == " ")
@@ -91,6 +141,9 @@ public class Account
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * @return (String) account phone number.
+     */
     public String getPhoneNumber()
     {
         return phoneNumber;
