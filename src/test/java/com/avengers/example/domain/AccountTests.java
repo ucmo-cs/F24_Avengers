@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @SpringBootTest
 public class AccountTests
 {
@@ -39,5 +41,57 @@ public class AccountTests
     {
         testAccount.setUserType(2);
         assert testAccount.getUserType() == 2;
+    }
+
+    @Test
+    public void testSetUserName()
+    {
+        testAccount.setUsername("test");
+        assert testAccount.getUsername() == "test";
+    }
+
+    @Test
+    public void testSetUserName_NullUserName()
+    {
+        assertThrows(IllegalArgumentException.class, () -> testAccount.setUsername(null));
+    }
+
+    @Test
+    public void testSetPassword()
+    {
+        testAccount.setPassword("test");
+        assert testAccount.getPassword() == "test";
+    }
+
+    @Test
+    public void testSetPassword_NullPassword()
+    {
+        assertThrows(IllegalArgumentException.class, () -> testAccount.setPassword(null));
+    }
+
+    @Test
+    public void testSetPhoneNumber()
+    {
+        testAccount.setPhoneNumber("test");
+        assert testAccount.getPhoneNumber() == "test";
+    }
+
+    @Test
+    public void testSetPhoneNumber_NullPhoneNumber()
+    {
+        assertThrows(IllegalArgumentException.class, () -> testAccount.setPhoneNumber(null));
+    }
+
+    @Test
+    public void testSetEmail()
+    {
+        testAccount.setEmail("test");
+        assert testAccount.getEmail() == "test";
+    }
+
+    @Test
+    public void testSetEmail_NullEmail()
+    {
+        assertThrows(IllegalArgumentException.class, () -> testAccount.setEmail(null));
     }
 }
