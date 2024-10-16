@@ -12,6 +12,9 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			commerce: {
+				green: '#006649',
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
