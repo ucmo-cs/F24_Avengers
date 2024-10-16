@@ -1,6 +1,8 @@
 package com.avengers.example.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -9,6 +11,7 @@ import lombok.Data;
 public class Account
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long acctId;
     private int userType;
     private String username;
@@ -20,9 +23,8 @@ public class Account
     {
     }
 
-    public Account(long acctId, int userType, String username, String password, String email, String phoneNumber)
+    public Account(int userType, String username, String password, String email, String phoneNumber)
     {
-        this.acctId = acctId;
         this.userType = userType;
         this.username = username;
         this.password = password;
