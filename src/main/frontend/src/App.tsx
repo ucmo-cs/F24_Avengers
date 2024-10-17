@@ -52,7 +52,7 @@ function App() {
     }, []);
 
     return (
-        <div className={"flex m-auto w-fit h-full justify-center flex-col items-center"}>
+        <div className={"flex flex-col items-center"}>
             <h1>Commerce Bank Frontend</h1>
             <Button className="my-6" onClick={postFakeAccount}>This creates a fake class</Button>
             <Table>
