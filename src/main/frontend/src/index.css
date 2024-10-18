@@ -17,16 +17,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer components {
+  .floating-shadow {
+    box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.25);
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  .nav-shadow {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -95,5 +92,8 @@
   }
   h1 {
     @apply text-4xl font-bold;
+  }
+  #root {
+    @apply h-screen flex flex-col;
   }
 }
