@@ -14,12 +14,21 @@ public class AccountController
 {
     private final AccountService accountService;
 
+    /**
+     * Creates a new account object and saves it to the database.
+     *
+     * @param account the account instance to be added to the database.
+     * @return The response from the server.
+     */
     @PostMapping("/account")
     public ResponseEntity<?> save(@RequestBody Account account)
     {
         return new ResponseEntity<>(accountService.create(account), HttpStatus.CREATED);
     }
 
+    /**
+     * @return A response object containing all accounts from the database.
+     */
     @GetMapping("/accounts")
     public ResponseEntity<?> findAll()
     {
