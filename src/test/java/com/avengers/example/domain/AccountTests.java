@@ -20,7 +20,7 @@ public class AccountTests
     @BeforeEach
     public void setup()
     {
-        testAccount = new Account(acctId, userType, username, password, email, phonenumber);
+        testAccount = new Account(userType, username, password, email, phonenumber);
     }
 
     @Test
