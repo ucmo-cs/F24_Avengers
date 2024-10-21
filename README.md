@@ -7,3 +7,17 @@ cd src/main/frontend
 npm install
 npm run dev
 ```
+
+___
+
+## Running the backend 
+To build and run the backend, either of the following steps can be followed: 
+
+### Intellij Build Steps
+Click the green arrow in Intellij and the project should build 
+
+### Manual Build Steps
+```bash
+cd F24_Avengers/
+mvn clean install
+```
