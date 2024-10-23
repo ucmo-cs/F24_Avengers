@@ -71,8 +71,8 @@ function App() {
                 </TableHeader>
                 <TableBody>
                     {accounts.map((account) => (
-                        <TableRow key={account.acctId} onClick={() => {navigate(`/account/${account.acctId}`)}} className={"cursor-pointer"}>
-                            <TableCell>{account.acctId}</TableCell>
+                        <TableRow key={account.id} onClick={() => {navigate(`/account/${account.id}`)}} className={"cursor-pointer"}>
+                            <TableCell>{account.id}</TableCell>
                             <TableCell>{account.userType}</TableCell>
                             <TableCell>{account.username}</TableCell>
                             <TableCell>{account.password}</TableCell>

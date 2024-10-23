@@ -12,7 +12,7 @@ public class Account
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long acctId;
+    private long id;  // primary key for the account table (renamed for compatibility).
     private int userType;
     private String username;
     private String password;

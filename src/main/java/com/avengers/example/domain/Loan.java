@@ -12,7 +12,7 @@ public class Loan
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long loanId;
+    private Long id; // primary key for the loan table (renamed for compatibility).
     private double originAmount;
     private long interestRate;
 
@@ -26,14 +26,14 @@ public class Loan
         this.interestRate = interestRate;
     }
 
-    public void setLoanId(Long loanId)
+    public void setId(Long loanId)
     {
-        this.loanId = loanId;
+        this.id = loanId;
     }
 
-    public Long getLoanId()
+    public Long getId()
     {
-        return loanId;
+        return id;
     }
 
     public void setOriginAmount(double originAmount)
