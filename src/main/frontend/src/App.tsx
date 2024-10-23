@@ -10,9 +10,12 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import "@/index.css";
+import {useNavigate} from "react-router-dom";
 
 function App() {
     const [accounts, setAccounts] = useState<Account[]>([]);
+    const navigate = useNavigate();
+
 
     const getFakeAccounts = useCallback(() => {
         fetch("http://localhost:8080/accounts")
@@ -28,7 +31,6 @@ function App() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "acctId": 12,
                 "userType": 0,
                 "username": "test",
                 "password": "password",
@@ -69,7 +71,7 @@ function App() {
                 </TableHeader>
                 <TableBody>
                     {accounts.map((account) => (
-                        <TableRow key={account.acctId}>
+                        <TableRow key={account.acctId} onClick={() => {navigate(`/account/${account.acctId}`)}} className={"cursor-pointer"}>
                             <TableCell>{account.acctId}</TableCell>
                             <TableCell>{account.userType}</TableCell>
                             <TableCell>{account.username}</TableCell>
