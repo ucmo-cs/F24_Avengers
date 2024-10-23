@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 interface Account {
-    acctId: number;
+    id: number;
     userType: number;
     username: string;
     password: string;
