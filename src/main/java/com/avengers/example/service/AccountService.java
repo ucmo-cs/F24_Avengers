@@ -4,7 +4,6 @@ import com.avengers.example.domain.Account;
 import com.avengers.example.repository.AccountRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
