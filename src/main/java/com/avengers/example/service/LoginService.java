@@ -13,8 +13,8 @@ public class LoginService {
         this.accountService = accountService;
     }
 
-    public boolean isLoginValid(String username, String password) {
-        return !Objects.isNull(accountService.findByUsernameAndPassword(username, password));
+    public boolean isLoginValid(String email, String password) {
+        return !Objects.isNull(accountService.findByEmailAndPassword(email, password));
     }
 
 }
