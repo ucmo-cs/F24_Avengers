@@ -20,6 +20,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Login login) {
-        return new ResponseEntity<>(loginService.isLoginValid(login.email(), login.password()), HttpStatus.OK);
+        boolean isValid = loginService.isLoginValid(login.email(), login.password());
+        return new ResponseEntity<>(isValid ? HttpStatus.OK : HttpStatus.UNAUTHORIZED);
     }
 }
