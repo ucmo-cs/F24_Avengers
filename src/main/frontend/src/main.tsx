@@ -5,7 +5,8 @@ import './index.css'
 import {createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider} from "react-router-dom";
 import Layout from "@/components/Layout.tsx";
 import Login from "@/routes/Login.tsx";
-import {AuthProvider, ProtectedRoute} from "@/components/Auth.tsx";
+import { AuthProvider } from "@/components/Auth.tsx";
+import ProtectedRoute from "@/components/ProtectedRoute.tsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(

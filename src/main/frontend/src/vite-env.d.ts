@@ -4,6 +4,12 @@ interface Props {
     children?: React.ReactNode;
 }
 
+interface AuthContextType {
+    user: Login | undefined;
+    signIn: (data: any) => void;
+    signOut: () => void;
+}
+
 interface Account {
     id: number;
     userType: number;
