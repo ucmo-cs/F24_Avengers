@@ -24,4 +24,9 @@ public class AccountService
     {
         return accountRepository.findAll();
     }
+
+    public Account findByEmailAndPassword(String email, String password)
+    {
+        return accountRepository.findByEmailAndPassword(email, password);
+    }
 }
