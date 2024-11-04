@@ -11,7 +11,7 @@ public class AccountTests
 {
     private Account testAccount;
     private long acctId = 1L;
-    private int userType = 1;
+    private boolean isAdmin = false;
     private String username = "user";
     private String password = "pass";
     private String email = "email@email.com";
@@ -20,7 +20,7 @@ public class AccountTests
     @BeforeEach
     public void setup()
     {
-        testAccount = new Account(userType, username, password, email, phonenumber);
+        testAccount = new Account(isAdmin, username, password, email, phonenumber);
     }
 
     @Test
@@ -37,10 +37,10 @@ public class AccountTests
     }
 
     @Test
-    public void testSetUserType()
+    public void testSetIsAdmin()
     {
-        testAccount.setUserType(2);
-        assert testAccount.getUserType() == 2;
+        testAccount.setIsAdmin(false);
+        assert !testAccount.getIsAdmin();
     }
 
     @Test
