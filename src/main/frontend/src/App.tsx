@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useState} from 'react';
 import {Button} from "@/components/ui/button";
 import {
     Table,
@@ -15,7 +15,6 @@ import {useNavigate} from "react-router-dom";
 function App() {
     const [accounts, setAccounts] = useState<Account[]>([]);
     const navigate = useNavigate();
-
 
     const getFakeAccounts = useCallback(() => {
         fetch("http://localhost:8080/accounts")
@@ -42,16 +41,6 @@ function App() {
             .then(() => getFakeAccounts())
             .catch(error => console.error(error));
     };
-
-    useEffect(() => {
-        console.log("mounted"); // TODO remove
-
-        getFakeAccounts();
-
-        return () => {
-          console.log("unmounted"); // TODO remove
-        }
-    }, []);
 
     return (
         <div className={"flex flex-col items-center"}>
