@@ -13,7 +13,7 @@ public class Account
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;  // primary key for the account table (renamed for compatibility).
-    private int userType;
+    private boolean isAdmin;
     private String username;
     private String password;
     private String email;
@@ -26,9 +26,9 @@ public class Account
     {
     }
 
-    public Account(int userType, String username, String password, String email, String phoneNumber)
+    public Account(boolean isAdmin, String username, String password, String email, String phoneNumber)
     {
-        this.userType = userType;
+        this.isAdmin = isAdmin;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -38,19 +38,19 @@ public class Account
     /**
      * Sets the type of user account.
      *
-     * @param userType (int) type of user account.
+     * @param isAdmin (boolean) indicator of administrator account.
      */
-    public void setUserType(int userType)
+    public void setIsAdmin(boolean isAdmin)
     {
-        this.userType = userType;
+        this.isAdmin = isAdmin;
     }
 
     /**
-     * @return (int) the type of user account
+     * @return (boolean) isAdmin indicator.
      */
-    public int getUserType()
+    public boolean getIsAdmin()
     {
-        return userType;
+        return isAdmin;
     }
 
     /**
