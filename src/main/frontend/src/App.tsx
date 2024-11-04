@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Button} from "@/components/ui/button";
 import {
     Table,
@@ -17,14 +17,14 @@ function App() {
     const navigate = useNavigate();
 
     const getFakeAccounts = useCallback(() => {
-        fetch("http://localhost:8080/accounts")
+        fetch("/api/accounts")
             .then(response => response.json())
             .then(data => setAccounts(data))
             .catch(error => console.error(error));
     }, [accounts]);
 
     const postFakeAccount = () => {
-        fetch("http://localhost:8080/account", {
+        fetch("/api/account", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -41,6 +41,10 @@ function App() {
             .then(() => getFakeAccounts())
             .catch(error => console.error(error));
     };
+
+    useEffect(() => {
+        getFakeAccounts();
+    }, []);
 
     return (
         <div className={"flex flex-col items-center"}>
