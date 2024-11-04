@@ -4,18 +4,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 public class AccountTests
 {
     private Account testAccount;
-    private long acctId = 1L;
-    private boolean isAdmin = false;
-    private String username = "user";
-    private String password = "pass";
-    private String email = "email@email.com";
-    private String phonenumber = "(111)111-1111";
+    private final long acctId = 1L;
+    private final boolean isAdmin = false;
+    private final String username = "user";
+    private final String password = "pass";
+    private final String email = "email@email.com";
+    private final String phonenumber = "(111)111-1111";
 
     @BeforeEach
     public void setup()
@@ -27,7 +29,7 @@ public class AccountTests
     public void testNoArgumentConstructor()
     {
         Account account = new Account();
-        assert account != null;
+        assert Objects.nonNull(account);
     }
 
     @Test
@@ -40,14 +42,14 @@ public class AccountTests
     public void testSetIsAdmin()
     {
         testAccount.setIsAdmin(false);
-        assert !testAccount.getIsAdmin();
+        assert !testAccount.isAdmin();
     }
 
     @Test
     public void testSetUserName()
     {
         testAccount.setUsername("test");
-        assert testAccount.getUsername() == "test";
+        assert Objects.equals(testAccount.getUsername(), "test");
     }
 
     @Test
@@ -60,7 +62,7 @@ public class AccountTests
     public void testSetPassword()
     {
         testAccount.setPassword("test");
-        assert testAccount.getPassword() == "test";
+        assert Objects.equals(testAccount.getPassword(), "test");
     }
 
     @Test
@@ -73,7 +75,7 @@ public class AccountTests
     public void testSetPhoneNumber()
     {
         testAccount.setPhoneNumber("test");
-        assert testAccount.getPhoneNumber() == "test";
+        assert Objects.equals(testAccount.getPhoneNumber(), "test");
     }
 
     @Test
@@ -86,7 +88,7 @@ public class AccountTests
     public void testSetEmail()
     {
         testAccount.setEmail("test");
-        assert testAccount.getEmail() == "test";
+        assert Objects.equals(testAccount.getEmail(), "test");
     }
 
     @Test
