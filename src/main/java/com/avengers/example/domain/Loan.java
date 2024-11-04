@@ -1,6 +1,8 @@
 package com.avengers.example.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.Getter;
@@ -13,7 +15,8 @@ import lombok.Setter;
 public class Loan
 {
     @Id
-    private Long loanId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // primary key for the loan table (renamed for compatibility).
     private double originAmount;
     private long interestRate;
 
@@ -21,12 +24,9 @@ public class Loan
     {
     }
 
-    public Loan(Long loanId, double originAmount, long interestRate)
+    public Loan(double originAmount, long interestRate)
     {
-        this.loanId = loanId;
         this.originAmount = originAmount;
         this.interestRate = interestRate;
     }
-
-
 }

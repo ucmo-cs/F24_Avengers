@@ -1,6 +1,8 @@
 package com.avengers.example.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.Getter;
@@ -10,34 +12,41 @@ import lombok.Setter;
 @Entity
 @Data
 @Getter
-
 public class Account
 {
     @Id
-    private long acctId;
-    private int userType;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;  // primary key for the account table (renamed for compatibility).
+    private boolean isAdmin;
     private String username;
     private String password;
     private String email;
     private String phoneNumber;
 
+    /**
+     * No argument constructor for account object.
+     */
     public Account()
     {
     }
 
-    public Account(long acctId, int userType, String username, String password, String email, String phoneNumber)
+    public Account(boolean isAdmin, String username, String password, String email, String phoneNumber)
     {
-        this.acctId = acctId;
-        this.userType = userType;
+        this.isAdmin = isAdmin;
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
-    public void setUserType(int userType)
+    /**
+     * Sets the type of user account.
+     *
+     * @param isAdmin (boolean) indicator of administrator account.
+     */
+    public void setIsAdmin(boolean isAdmin)
     {
-        this.userType = userType;
+        this.isAdmin = isAdmin;
     }
 
     public void setUsername(String username)
@@ -49,7 +58,11 @@ public class Account
         this.username = username;
     }
 
-
+    /**
+     * Sets the password of the account.
+     *
+     * @param password (String) account password.
+     */
     public void setPassword(String password)
     {
         if (null == password || password == "" || password == " ")
@@ -59,7 +72,11 @@ public class Account
         this.password = password;
     }
 
-
+    /**
+     * Sets the email on the account.
+     *
+     * @param email (String) account email.
+     */
     public void setEmail(String email)
     {
         if (null == email || email == "" || email == " ")
@@ -69,7 +86,11 @@ public class Account
         this.email = email;
     }
 
-
+    /**
+     * Sets the phone number of the account.
+     *
+     * @param phoneNumber (String) account phone number.
+     */
     public void setPhoneNumber(String phoneNumber)
     {
         if (null == phoneNumber || phoneNumber == "" || phoneNumber == " ")
@@ -78,5 +99,4 @@ public class Account
         }
         this.phoneNumber = phoneNumber;
     }
-
 }

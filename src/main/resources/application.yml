@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: book-service
+    name: Loan-repayment-service
 
   h2:
     console:
