@@ -3,9 +3,14 @@ package com.avengers.example.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Entity
 @Data
+@Getter
+
 public class Account
 {
     @Id
@@ -35,11 +40,6 @@ public class Account
         this.userType = userType;
     }
 
-    public int getUserType()
-    {
-        return userType;
-    }
-
     public void setUsername(String username)
     {
         if (null == username || username == "" || username == " ")
@@ -49,10 +49,6 @@ public class Account
         this.username = username;
     }
 
-    public String getUsername()
-    {
-        return username;
-    }
 
     public void setPassword(String password)
     {
@@ -63,10 +59,6 @@ public class Account
         this.password = password;
     }
 
-    public String getPassword()
-    {
-        return password;
-    }
 
     public void setEmail(String email)
     {
@@ -77,10 +69,6 @@ public class Account
         this.email = email;
     }
 
-    public String getEmail()
-    {
-        return email;
-    }
 
     public void setPhoneNumber(String phoneNumber)
     {
@@ -91,8 +79,4 @@ public class Account
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPhoneNumber()
-    {
-        return phoneNumber;
-    }
 }
