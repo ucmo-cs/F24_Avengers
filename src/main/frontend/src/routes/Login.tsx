@@ -36,7 +36,7 @@ function Login() {
     })
 
     const onSubmit = (data: z.infer<typeof formSchema>) => {
-        fetch("http://localhost:8080/login", {
+        fetch("/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
