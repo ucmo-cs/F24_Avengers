@@ -5,9 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Entity
 @Data
+@Getter
 public class Account
 {
     @Id
@@ -45,19 +49,6 @@ public class Account
         this.isAdmin = isAdmin;
     }
 
-    /**
-     * @return (boolean) isAdmin indicator.
-     */
-    public boolean getIsAdmin()
-    {
-        return isAdmin;
-    }
-
-    /**
-     * Sets the username of the account.
-     *
-     * @param username (String) username of the account.
-     */
     public void setUsername(String username)
     {
         if (null == username || username == "" || username == " ")
@@ -65,14 +56,6 @@ public class Account
             throw new IllegalArgumentException("Username can not be null or empty!");
         }
         this.username = username;
-    }
-
-    /**
-     * @return (String) username of the account.
-     */
-    public String getUsername()
-    {
-        return username;
     }
 
     /**
@@ -90,14 +73,6 @@ public class Account
     }
 
     /**
-     * @return (String) account password.
-     */
-    public String getPassword()
-    {
-        return password;
-    }
-
-    /**
      * Sets the email on the account.
      *
      * @param email (String) account email.
@@ -112,14 +87,6 @@ public class Account
     }
 
     /**
-     * @return (String) account email.
-     */
-    public String getEmail()
-    {
-        return email;
-    }
-
-    /**
      * Sets the phone number of the account.
      *
      * @param phoneNumber (String) account phone number.
@@ -131,13 +98,5 @@ public class Account
             throw new IllegalArgumentException("Phone Number can not be null or empty!");
         }
         this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * @return (String) account phone number.
-     */
-    public String getPhoneNumber()
-    {
-        return phoneNumber;
     }
 }

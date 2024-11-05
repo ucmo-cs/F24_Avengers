@@ -5,9 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @Entity
+@Getter
+@Setter
 public class Loan
 {
     @Id
@@ -24,35 +28,5 @@ public class Loan
     {
         this.originAmount = originAmount;
         this.interestRate = interestRate;
-    }
-
-    public void setId(Long loanId)
-    {
-        this.id = loanId;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setOriginAmount(double originAmount)
-    {
-        this.originAmount = originAmount;
-    }
-
-    public double getOriginAmount()
-    {
-        return originAmount;
-    }
-
-    public void setInterestRate(long interestRate)
-    {
-        this.interestRate = interestRate;
-    }
-
-    public long getInterestRate()
-    {
-        return interestRate;
     }
 }
