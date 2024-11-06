@@ -2,12 +2,20 @@ import {useCallback, useEffect, useState} from "react";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+// import {
+//     Pagination,
+//     PaginationContent,
+//     PaginationEllipsis,
+//     PaginationItem,
+//     PaginationLink,
+//     PaginationNext,
+//     PaginationPrevious,
+// } from "@/components/ui/pagination"
 import {useNavigate} from "react-router-dom";
 
 function AdminTable() {
@@ -20,6 +28,7 @@ function AdminTable() {
     fetch("/api/loans")
       .then((response) => response.json())
       .then((data) => {
+          console.log(data);
           setData(data);
           setLoading(false);
       })
@@ -31,31 +40,32 @@ function AdminTable() {
   }, []);
 
   return (
-    <div className={"flex flex-col items-center"}>
+    <>
         {loading ? (
             <p>Loading...</p>
         ) : (
-            <div className={"border-2 rounded-2xl overflow-hidden"}>
-                <Table>
+            <div className={"border-2 rounded-lg overflow-hidden w-5/6"}>
+                <Table className={"text-xl "}>
                     <TableHeader className={"bg-muted/50"}>
                         <TableRow>
-                            <TableHead>Name</TableHead>
-                            <TableHead>Date</TableHead>
-                            <TableHead>Origin Amount</TableHead>
-                            <TableHead>Amount</TableHead>
-                            <TableHead>Interest Rate</TableHead>
+                            <TableHead className={"w-1/5"}>Name</TableHead>
+                            <TableHead className={"w-1/5"}>Date</TableHead>
+                            <TableHead className={"w-1/5"}>Origin Amount</TableHead>
+                            <TableHead className={"w-1/5"}>Amount</TableHead>
+                            <TableHead className={"w-1/5"}>Interest Rate</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {data.map((loan) => {
                             const date = new Date(loan.date);
+                            console.log(loan);
                             return (
                                 <TableRow key={loan.id} onClick={() => {navigate(`/account/${loan.account?.id}`)}} className={"cursor-pointer"}>
                                     <TableCell>{loan.account?.email}</TableCell>
                                     <TableCell>{date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()}</TableCell>
-                                    <TableCell>{loan.originAmount}</TableCell>
-                                    <TableCell>{loan.currentAmount}</TableCell>
-                                    <TableCell>{loan.interestRate}</TableCell>
+                                    <TableCell>{"$" + loan.originAmount.toFixed(2)}</TableCell>
+                                    <TableCell>{"$" + loan.currentAmount.toFixed(2)}</TableCell>
+                                    <TableCell>{loan.interestRate.toFixed(2)}</TableCell>
                                 </TableRow>
                             )
                         })}
@@ -64,7 +74,7 @@ function AdminTable() {
             </div>
 
         )}
-    </div>
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ import Login from "@/routes/Login.tsx";
 import { AuthProvider } from "@/components/Auth.tsx";
 import ProtectedRoute from "@/components/ProtectedRoute.tsx";
 import AdminTable from "@/routes/AdminTable.tsx";
+import CustomerPage from "@/routes/CustomerPage.tsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
             <Route path={"register"} element={<h1>HELLO OTHER ROUTE</h1>} />
             <Route path={"/"} element={<ProtectedRoute />}>
                 <Route path={"app-demo"} element={<AdminTable />} />
+                <Route path={"account/:id"} element={<CustomerPage />} />
             </Route>
         </Route>
     )
