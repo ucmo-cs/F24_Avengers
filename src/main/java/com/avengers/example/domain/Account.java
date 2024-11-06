@@ -1,17 +1,18 @@
 package com.avengers.example.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @Getter
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Account
 {
     @Id
@@ -22,6 +23,9 @@ public class Account
     private String password;
     private String email;
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Loan> loans = new ArrayList<>();
 
     /**
      * No argument constructor for account object.
@@ -51,7 +55,7 @@ public class Account
 
     public void setUsername(String username)
     {
-        if (null == username || username == "" || username == " ")
+        if (null == username || username.isEmpty() || username.equals(" "))
         {
             throw new IllegalArgumentException("Username can not be null or empty!");
         }
@@ -65,7 +69,7 @@ public class Account
      */
     public void setPassword(String password)
     {
-        if (null == password || password == "" || password == " ")
+        if (null == password || password.isEmpty() || password.equals(" "))
         {
             throw new IllegalArgumentException("Password can not be null or empty!");
         }
@@ -79,7 +83,7 @@ public class Account
      */
     public void setEmail(String email)
     {
-        if (null == email || email == "" || email == " ")
+        if (null == email || email.isEmpty() || email.equals(" "))
         {
             throw new IllegalArgumentException("Email can not be null or empty!");
         }
@@ -93,7 +97,7 @@ public class Account
      */
     public void setPhoneNumber(String phoneNumber)
     {
-        if (null == phoneNumber || phoneNumber == "" || phoneNumber == " ")
+        if (null == phoneNumber || phoneNumber.isEmpty() || phoneNumber.equals(" "))
         {
             throw new IllegalArgumentException("Phone Number can not be null or empty!");
         }
