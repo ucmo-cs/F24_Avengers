@@ -1,7 +1,6 @@
 package com.avengers.example.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -12,7 +11,6 @@ import java.util.List;
 @Entity
 @Data
 @Getter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Account
 {
     @Id
@@ -25,6 +23,7 @@ public class Account
     private String phoneNumber;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Loan> loans = new ArrayList<>();
 
     /**
