@@ -33,4 +33,10 @@ public class AccountController
     {
         return new ResponseEntity<>(accountService.findAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/account/{id}")
+    public ResponseEntity<?> findById(@PathVariable long id)
+    {
+        return new ResponseEntity<>(accountService.findById(id), HttpStatus.OK);
+    }
 }

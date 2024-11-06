@@ -29,4 +29,9 @@ public class AccountService
     {
         return accountRepository.findByEmailAndPassword(email, password);
     }
+
+    public Account findById(long id)
+    {
+        return accountRepository.findById(id).orElse(null);
+    }
 }
