@@ -12,11 +12,20 @@ interface AuthContextType {
 
 interface Account {
     id: number;
-    userType: number;
+    isAdmin: boolean;
     username: string;
     password: string;
     email: string;
     phoneNumber: string;
+}
+
+interface Loan {
+    id: number;
+    originAmount: number;
+    currentAmount: number;
+    interestRate: number;
+    date: Date;
+    account: Account;
 }
 
 interface Login {

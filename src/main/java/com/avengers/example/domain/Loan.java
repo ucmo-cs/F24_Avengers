@@ -7,18 +7,22 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Data
 @Entity
 @Getter
 @Setter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Loan
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // primary key for the loan table (renamed for compatibility).
     private double originAmount;
-    private long interestRate;
+    private double currentAmount;
+    private float interestRate;
+    private Date date;
+
 
     @ManyToOne
     @JoinColumn(name = "account_id")
@@ -28,9 +32,17 @@ public class Loan
     {
     }
 
-    public Loan(double originAmount, long interestRate)
+    public Loan(double originAmount, float interestRate)
     {
         this.originAmount = originAmount;
         this.interestRate = interestRate;
+    }
+
+    public Loan(double originAmount, double currentAmount, float interestRate, Date date)
+    {
+        this.originAmount = originAmount;
+        this.currentAmount = currentAmount;
+        this.interestRate = interestRate;
+        this.date = date;
     }
 }
