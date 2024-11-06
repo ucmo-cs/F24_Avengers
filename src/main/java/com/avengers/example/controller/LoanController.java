@@ -5,10 +5,9 @@ import com.avengers.example.service.LoanService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -19,8 +18,8 @@ public class LoanController
     /**
      * Creates a new loan object and saves it to the database.
      *
-     * @param loan the loan instance to be added to the database.
-     * @return The response from the server.
+     * //@param loan the loan instance to be added to the database.
+     * //@return The response from the server.
      */
     @PostMapping("/loan")
     public ResponseEntity<?> save(@RequestBody Loan loan)
@@ -29,11 +28,20 @@ public class LoanController
     }
 
     /**
-     * @return A response object containing all loans from the database.
+     * //@return A response object containing all loans from the database.
      */
     @GetMapping("/loans")
     public ResponseEntity<?> findAll()
     {
         return new ResponseEntity<>(loanService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}") public ResponseEntity<Loan> getLoanById(@PathVariable Long id) {
+        Optional<Loan> loan = loanService.getLoanById(id);
+        if (loan.isPresent()) {
+            return ResponseEntity.ok(loan.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
