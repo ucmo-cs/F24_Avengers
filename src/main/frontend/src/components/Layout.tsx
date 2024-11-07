@@ -8,7 +8,7 @@ function Layout() {
                 <img src={"/commerce_globe_45x48.png"} alt={"Logo"} />
             </div>
         </nav>
-        <div className={"grow flex justify-center items-center"}>
+        <div className={"grow flex flex-col justify-center items-center"}>
             <Outlet />
         </div>
     </>
