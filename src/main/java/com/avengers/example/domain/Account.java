@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @Getter
+@NoArgsConstructor
 public class Account
 {
     @Id
@@ -25,13 +27,6 @@ public class Account
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Loan> loans = new ArrayList<>();
-
-    /**
-     * No argument constructor for account object.
-     */
-    public Account()
-    {
-    }
 
     public Account(boolean isAdmin, String username, String password, String email, String phoneNumber)
     {
