@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,16 @@ public class Account
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;  // primary key for the account table (renamed for compatibility).
+
+    @Setter
     private boolean isAdmin;
+
     private String username;
+
     private String password;
+
     private String email;
+
     private String phoneNumber;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -40,16 +47,6 @@ public class Account
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * Sets the type of user account.
-     *
-     * @param isAdmin (boolean) indicator of administrator account.
-     */
-    public void setIsAdmin(boolean isAdmin)
-    {
-        this.isAdmin = isAdmin;
     }
 
     public void setUsername(String username)
@@ -101,5 +98,18 @@ public class Account
             throw new IllegalArgumentException("Phone Number can not be null or empty!");
         }
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Account{" +
+                "id=" + id +
+                ", isAdmin=" + isAdmin +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
