@@ -39,4 +39,10 @@ public class AccountController
     {
         return new ResponseEntity<>(accountService.findById(id), HttpStatus.OK);
     }
+
+    @GetMapping("/account/{id}/loans")
+    public ResponseEntity<?> findLoansByAccountId(@PathVariable long id)
+    {
+        return new ResponseEntity<>(accountService.findLoansByAccountId(id), HttpStatus.OK);
+    }
 }
