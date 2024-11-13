@@ -32,6 +32,8 @@ const formSchema = z.object({
 });
 
 function CreateLoanDialog() {
+    const [accountPopOverOpen, setAccountPopOverOpen] = useState(false);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -97,7 +99,7 @@ function CreateLoanDialog() {
                             render={({field}) => (
                                 <FormItem className={"flex flex-col"}>
                                     <FormLabel>Account Id</FormLabel>
-                                    <Popover>
+                                    <Popover open={accountPopOverOpen} onOpenChange={setAccountPopOverOpen}>
                                         <PopoverTrigger asChild>
                                             <FormControl>
                                                 <Button
@@ -108,14 +110,14 @@ function CreateLoanDialog() {
                                                     )}
                                                 >
                                                     {field.value ? (
-                                                        field.value
+                                                        accounts.find((account) => account.id === field.value)?.email
                                                     ) : (
                                                         <span>Select an account</span>
                                                     )}
                                                 </Button>
                                             </FormControl>
                                         </PopoverTrigger>
-                                        <PopoverContent className="w-auto p-0">
+                                        <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
                                             <Command>
                                                 <CommandInput
                                                     placeholder="Search for an account..."
@@ -132,7 +134,10 @@ function CreateLoanDialog() {
                                                             accounts.map((account) => (
                                                                 <CommandItem
                                                                     key={account?.id}
-                                                                    onSelect={() => form.setValue("id", account?.id)}
+                                                                    onSelect={() => {
+                                                                        form.setValue("id", account?.id);
+                                                                        setAccountPopOverOpen(false);
+                                                                    }}
                                                                     value={account?.phoneNumber + "|" + account?.email}
                                                                 >
                                                                     {account?.email}
