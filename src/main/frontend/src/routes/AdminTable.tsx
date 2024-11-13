@@ -69,9 +69,9 @@ function AdminTable() {
                                 <TableRow key={loan.id} onClick={() => {navigate(`/account/${loan.account?.id}`)}} className={"cursor-pointer"}>
                                     <TableCell>{loan.account?.email}</TableCell>
                                     <TableCell>{date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()}</TableCell>
-                                    <TableCell>{"$" + loan.originAmount.toFixed(2)}</TableCell>
-                                    <TableCell>{"$" + loan.currentAmount.toFixed(2)}</TableCell>
-                                    <TableCell>{loan.interestRate.toFixed(2)}</TableCell>
+                                    <TableCell>{loan.originAmount.toLocaleString(undefined, {style: "currency", currency: "USD"})}</TableCell>
+                                    <TableCell>{loan.currentAmount.toLocaleString(undefined, {style: "currency", currency: "USD"})}</TableCell>
+                                    <TableCell>{loan.interestRate.toFixed(2) + "%"}</TableCell>
                                 </TableRow>
                             )
                         })}
