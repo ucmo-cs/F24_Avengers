@@ -1,6 +1,7 @@
 package com.avengers.example.service;
 
 import com.avengers.example.domain.Account;
+import com.avengers.example.domain.Loan;
 import com.avengers.example.repository.AccountRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -33,5 +34,15 @@ public class AccountService
     public Account findById(long id)
     {
         return accountRepository.findById(id).orElse(null);
+    }
+
+    public List<Loan> findLoansByAccountId(long id)
+    {
+        Account account = accountRepository.findById(id).orElse(null);
+        if (null == account)
+        {
+            return null;
+        }
+        return account.getLoans();
     }
 }
