@@ -41,7 +41,7 @@ public class AccountTests
     @Test
     public void testSetIsAdmin()
     {
-        testAccount.setIsAdmin(false);
+        testAccount.setAdmin(false);
         assert !testAccount.isAdmin();
     }
 

@@ -1,7 +1,5 @@
 package com.avengers.example.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -9,8 +7,8 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@Data
 @Entity
+@Data
 @Getter
 @Setter
 public class Loan
@@ -38,11 +36,12 @@ public class Loan
         this.interestRate = interestRate;
     }
 
-    public Loan(double originAmount, double currentAmount, float interestRate, Date date)
+    public Loan(double originAmount, double currentAmount, float interestRate, Date date, Account account)
     {
         this.originAmount = originAmount;
         this.currentAmount = currentAmount;
         this.interestRate = interestRate;
         this.date = date;
+        this.account = account;
     }
 }
