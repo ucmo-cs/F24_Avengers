@@ -1,15 +1,12 @@
 import {
-    Dialog,
     DialogClose,
-    DialogContent,
     DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger
 } from "@/components/ui/dialog.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {CalendarIcon, FilePlus2} from "lucide-react";
+import {CalendarIcon} from "lucide-react";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
 import {cn} from "@/lib/utils.ts";
@@ -31,7 +28,7 @@ const formSchema = z.object({
     date: z.date(),
 });
 
-function CreateLoanDialog() {
+function CreateLoanDialog({ toggle }: { toggle?: () => void }) {
     const [accountPopOverOpen, setAccountPopOverOpen] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -80,19 +77,14 @@ function CreateLoanDialog() {
     }, []);
 
     return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button variant={"outline"}>Create Loan<FilePlus2/></Button>
-            </DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>New Loan</DialogTitle>
-                    <DialogDescription>
-                        Create a new loan by filling out the form below.
-                    </DialogDescription>
-                </DialogHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>
+                        <DialogHeader className={"mb-5"}>
+                            <DialogTitle>New Loan</DialogTitle>
+                            <DialogDescription>
+                                Create a new loan by filling out the form below.
+                            </DialogDescription>
+                        </DialogHeader>
                         <FormField
                             control={form.control}
                             name={"id"}
@@ -123,7 +115,7 @@ function CreateLoanDialog() {
                                                     placeholder="Search for an account..."
                                                     className="w-full"
                                                 />
-                                                <Button className=" my-1 mx-1" variant="outline" size={"sm"}>
+                                                <Button className=" my-1 mx-1" variant="outline" size={"sm"} onClick={toggle}>
                                                     Create Account
                                                 </Button>
                                                 <CommandList>
@@ -244,8 +236,6 @@ function CreateLoanDialog() {
                         </DialogFooter>
                     </form>
                 </Form>
-            </DialogContent>
-        </Dialog>
     )
 }
 

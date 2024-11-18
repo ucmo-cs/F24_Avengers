@@ -1,36 +1,43 @@
 import { useParams } from "react-router-dom";
 import {useCallback, useEffect, useState} from "react";
+import {getAccountLoans} from "@/lib/api.ts";
 
 
 function CustomerPage() {
-    const { id } = useParams();
+    const { id } = useParams<string>();
 
-    const [customer, setCustomer] = useState<Account | null>(null);
+    const [account, setAccount] = useState<Account | null>(null);
+    const [accountLoans, setAccountLoans] = useState<Loan[]>([]);
 
-    const getCustomer = useCallback(() => {
+    const getAccount = useCallback(() => {
         fetch(`/api/account/${id}`)
             .then((response) => response.json())
             .then((data) => {
-                setCustomer(data);
+                setAccount(data);
             })
             .catch((error) => console.error(error));
     }
     , [id]);
 
     useEffect(() => {
-        getCustomer();
+        getAccount();
+
+        getAccountLoans(id)
+            .then((data) => {
+                setAccountLoans(data);
+            })
+            .catch((error) => console.error(error));
     }, []);
 
   return (
-    <div>
-      <h1>{`Customer: ${id}`}</h1>
-        {customer ? (
-            <div>
-                <p>{JSON.stringify(customer)}</p>
-            </div>
+    <div className={"rounded-3xl floating-shadow p-5"}>
+        <h1>{account?.username}</h1>
+        <h2>{account?.email}</h2>
+        <p>{accountLoans.length > 0 ? (
+            accountLoans[0].originAmount
         ) : (
-            <p>Loading...</p>
-        )}
+            "no loans"
+        )}</p>
     </div>
   );
 }
