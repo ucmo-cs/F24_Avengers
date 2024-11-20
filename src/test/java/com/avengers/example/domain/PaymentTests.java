@@ -11,15 +11,13 @@ public class PaymentTests
     private Payment testPayment;
     private float testPaymentAmount = 1.10f;
     private Date testPaymentDate = new Date();
-    private long testLoanId = 1;
 
     @Test
     public void testConstructor()
     {
-        testPayment = new Payment(testPaymentAmount, testPaymentDate, testLoanId);
+        testPayment = new Payment(testPaymentAmount, testPaymentDate);
 
         assert testPayment.getPaymentAmount() == testPaymentAmount;
-        assert testPayment.getLoanId() == testLoanId;
         assert testPayment.getPaymentDate() == testPaymentDate;
     }
 }
