@@ -28,7 +28,7 @@ const formSchema = z.object({
     date: z.date(),
 });
 
-function CreateLoanDialog({ toggle }: { toggle?: () => void }) {
+function CreateLoanDialog({ toggle, submit }: { toggle?: () => void, submit?: () => void }) {
     const [accountPopOverOpen, setAccountPopOverOpen] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -62,7 +62,7 @@ function CreateLoanDialog({ toggle }: { toggle?: () => void }) {
                 throw new Error("Failed to create loan");
             }
         }).then(() => {
-        //  Do something
+            submit && submit();
         }).catch((error) => {
             console.error(error);
         });

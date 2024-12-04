@@ -48,7 +48,7 @@ function AdminTable() {
         <div className={"mb-2 flex justify-between w-5/6"}>
             <h1 className={"text-4xl"}>Loans</h1>
             <DialogSwitcher>
-                <CreateLoanDialog />
+                <CreateLoanDialog submit={getLoans} />
                 <CreateAccountDialog />
             </DialogSwitcher>
         </div>
@@ -73,9 +73,9 @@ function AdminTable() {
                             }
                             const date = new Date(loan.date);
                             return (
-                                <TableRow key={loan.id} onClick={() => {navigate(`/account/${loan.account?.id}`)}} className={"cursor-pointer"}>
+                                <TableRow key={loan.id} onClick={() => {navigate(`/account/${loan.account?.id}?loan=${loan.id}`)}} className={"cursor-pointer"}>
                                     <TableCell>{loan.account?.email}</TableCell>
-                                    <TableCell>{date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()}</TableCell>
+                                    <TableCell>{date.toLocaleDateString("en-US")}</TableCell>
                                     <TableCell>{loan.originAmount.toLocaleString(undefined, {style: "currency", currency: "USD"})}</TableCell>
                                     <TableCell>{loan.currentAmount.toLocaleString(undefined, {style: "currency", currency: "USD"})}</TableCell>
                                     <TableCell>{loan.interestRate.toFixed(2) + "%"}</TableCell>

@@ -1,6 +1,7 @@
 package com.avengers.example.service;
 
 import com.avengers.example.domain.Account;
+import com.avengers.example.domain.AccountUpdate;
 import com.avengers.example.domain.Loan;
 import com.avengers.example.repository.AccountRepository;
 import jakarta.transaction.Transactional;
@@ -44,5 +45,35 @@ public class AccountService
             return null;
         }
         return account.getLoans();
+    }
+
+    public Account update(long id, AccountUpdate account)
+    {
+        Account existingAccount = accountRepository.findById(id).orElse(null);
+        if (null == existingAccount)
+        {
+            return null;
+        }
+
+        if (null != account.email() && !account.email().isEmpty())
+        {
+            existingAccount.setEmail(account.email());
+        }
+
+        if (null != account.phoneNumber() && !account.phoneNumber().isEmpty())
+        {
+            existingAccount.setPhoneNumber(account.phoneNumber());
+        }
+
+        if (null != account.routingNumber() && !account.routingNumber().isEmpty())
+        {
+            existingAccount.setRoutingNumber(account.routingNumber());
+        }
+
+        if (null != account.accountNumber() && !account.accountNumber().isEmpty())
+        {
+            existingAccount.setAccountNumber(account.accountNumber());
+        }
+        return accountRepository.save(existingAccount);
     }
 }
