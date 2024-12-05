@@ -46,10 +46,14 @@ function Login() {
             if (!response.ok) {
                 throw new Error("Password is incorrect")
             }
-        }).then(() => {
-            console.log(data);
+            return response.json();
+        }).then((account: Account) => { //Todo: auth code here not fully protected
             signIn(data);
-            navigate("/app-demo");
+            if (account.admin) {
+                navigate("/app-demo");
+            } else {
+                navigate("/account/" + account.id + "?loan=1");
+            }
         }).catch((error) => {
             form.setError(
                 "password",

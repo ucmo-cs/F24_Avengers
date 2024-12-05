@@ -15,7 +15,7 @@ const router = createBrowserRouter(
             <Route index element={<Navigate to={"login"} replace />} />
             <Route path={"login"} element={<Login />} />
             <Route path={"register"} element={<h1>HELLO OTHER ROUTE</h1>} />
-            <Route path={"/"} element={<ProtectedRoute />}>
+            <Route element={<ProtectedRoute />}>
                 <Route path={"app-demo"} element={<AdminTable />} />
                 <Route path={"account/:id"} element={<CustomerPage />} />
             </Route>

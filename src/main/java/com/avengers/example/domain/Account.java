@@ -2,6 +2,7 @@ package com.avengers.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +30,12 @@ public class Account
 
     private String phoneNumber;
 
+    @Setter
+    private String routingNumber;
+
+    @Setter
+    private String accountNumber;
+
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Loan> loans = new ArrayList<>();
@@ -38,6 +45,17 @@ public class Account
      */
     public Account()
     {
+    }
+
+    public Account(boolean isAdmin, String username, String password, String email, String phoneNumber, String routingNumber, String accountNumber)
+    {
+        this.isAdmin = isAdmin;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.routingNumber = routingNumber;
+        this.accountNumber = accountNumber;
     }
 
     public Account(boolean isAdmin, String username, String password, String email, String phoneNumber)

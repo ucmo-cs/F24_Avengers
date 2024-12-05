@@ -1,6 +1,7 @@
 package com.avengers.example.controller;
 
 import com.avengers.example.domain.Account;
+import com.avengers.example.domain.AccountUpdate;
 import com.avengers.example.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,13 @@ public class AccountController
     public ResponseEntity<?> save(@RequestBody Account account)
     {
         return new ResponseEntity<>(accountService.create(account), HttpStatus.CREATED);
+    }
+
+    //post route to update account
+    @PutMapping("/account/{id}")
+    public ResponseEntity<?> update(@PathVariable long id, @RequestBody AccountUpdate account)
+    {
+        return new ResponseEntity<>(accountService.update(id, account), HttpStatus.OK);
     }
 
     /**

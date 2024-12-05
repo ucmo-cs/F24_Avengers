@@ -19,6 +19,8 @@ import {
 import {useNavigate} from "react-router-dom";
 
 import CreateLoanDialog from "@/components/CreateLoanDialog.tsx";
+import DialogSwitcher from "@/components/DialogSwitcher.tsx";
+import CreateAccountDialog from "@/components/CreateAccountDialog.tsx";
 
 function AdminTable() {
   const [data, setData] = useState<Loan[]>([]);
@@ -45,7 +47,10 @@ function AdminTable() {
     <>
         <div className={"mb-2 flex justify-between w-5/6"}>
             <h1 className={"text-4xl"}>Loans</h1>
-            <CreateLoanDialog />
+            <DialogSwitcher>
+                <CreateLoanDialog submit={getLoans} />
+                <CreateAccountDialog />
+            </DialogSwitcher>
         </div>
         {loading ? (
             <p>Loading...</p>
@@ -62,13 +67,15 @@ function AdminTable() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {data.map((loan) => {
+                        {[...data, ...new Array(10 - data.length)].map((loan) => {
+                            if (!loan) {
+                                return (<TableRow key={Math.random()} className={"h-[45px]"}><TableCell/><TableCell/><TableCell/><TableCell/><TableCell/></TableRow>);
+                            }
                             const date = new Date(loan.date);
-                            console.log(loan);
                             return (
-                                <TableRow key={loan.id} onClick={() => {navigate(`/account/${loan.account?.id}`)}} className={"cursor-pointer"}>
+                                <TableRow key={loan.id} onClick={() => {navigate(`/account/${loan.account?.id}?loan=${loan.id}`)}} className={"cursor-pointer"}>
                                     <TableCell>{loan.account?.email}</TableCell>
-                                    <TableCell>{date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()}</TableCell>
+                                    <TableCell>{date.toLocaleDateString("en-US")}</TableCell>
                                     <TableCell>{loan.originAmount.toLocaleString(undefined, {style: "currency", currency: "USD"})}</TableCell>
                                     <TableCell>{loan.currentAmount.toLocaleString(undefined, {style: "currency", currency: "USD"})}</TableCell>
                                     <TableCell>{loan.interestRate.toFixed(2) + "%"}</TableCell>
